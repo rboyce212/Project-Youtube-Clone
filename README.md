@@ -1,3 +1,9 @@
+Developers: 
+Irfan Hanjra
+Rich Boyce
+​
+Trello Board URL: https://trello.com/b/XHQeZSVI/youtube-clone
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
