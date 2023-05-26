@@ -6,17 +6,19 @@ import About from "./components/About/About.js";
 import NavBar from "./components/NavBar/NavBar.js";
 
 function App() {
- 
   return (
     <div className="App">
-      <Router>
-        {/* <Home /> */}
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </Router>
+      <div>
+        <Router>
+          {/* <Home /> */}
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </Router>
+      </div>
+      <main></main>
     </div>
   );
 }
