@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import YouTube from "react-youtube";
+import Modal from "react-bootstrap/Modal";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("")
   const [videoIds, setVideoIds] = useState([]);
+  const [errorModal, setErrorModal] = useState(false);
   
   const apiUrl = process.env.REACT_APP_API_BASE_URL;
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -23,6 +25,7 @@ export default function Home() {
       setVideoIds(fetchedVideoIds);
     } catch (error) {
       console.log(error);
+      setErrorModal(true);
     }
   }
 
@@ -30,6 +33,10 @@ export default function Home() {
     event.preventDefault();
     setSearchTerm("");
     fetchResults();
+  }
+
+  function handleCloseErrorModal() {
+    setErrorModal(false);
   }
   
   return (
@@ -46,7 +53,7 @@ export default function Home() {
         </button>
       </form>
       {!videoIds.length && (
-        <div class="alert alert-dark" role="alert">
+        <div className="alert alert-dark" role="alert">
           No search results yet!, Please submit a search above!
         </div>
       )}
@@ -61,6 +68,18 @@ export default function Home() {
           ))}
         </div>
       )}
+      <Modal
+        show={errorModal}
+        onHide={handleCloseErrorModal}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="bg-dark text-light">
+          There was an error processing your request. Please try again later.
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
