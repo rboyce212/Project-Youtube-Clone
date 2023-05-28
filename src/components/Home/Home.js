@@ -1,31 +1,33 @@
 import React, { useState } from "react";
-import YouTube from "react-youtube";
-import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
 
-export default function Home() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [videoIds, setVideoIds] = useState([]);
-  const [errorModal, setErrorModal] = useState(false);
-  
-  const apiUrl = process.env.REACT_APP_API_BASE_URL;
-  const apiKey = process.env.REACT_APP_API_KEY;
-
+export default function Home( {apiUrl, apiKey} ) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [videos, setVideos] = useState([]);
 
   function handleSearch(event) {
-    setSearchTerm(event.target.value)
+    setSearchTerm(event.target.value);
   }
 
   async function fetchResults() {
     try {
       let response = await fetch(
-        `${apiUrl}search?q=${searchTerm}&maxResults=10&key=${apiKey}`
+        `${apiUrl}search?q=${searchTerm}&part=snippet&maxResults=10&key=${apiKey}`
       );
+      if (!response.ok) {
+        throw new Error("Request failed with status code " + response.status);
+      }
       const data = await response.json();
-      const fetchedVideoIds = data.items.map((item) => item.id.videoId);
-      setVideoIds(fetchedVideoIds);
+      const fetchedVideos = data.items.map((item) => ({
+        id: item.id.videoId,
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.high.url,
+        date: item.snippet.publishedAt
+      }));
+       console.log("Videos:", fetchedVideos);
+       setVideos(fetchedVideos);
     } catch (error) {
       console.log(error);
-      setErrorModal(true);
     }
   }
 
@@ -35,10 +37,6 @@ export default function Home() {
     fetchResults();
   }
 
-  function handleCloseErrorModal() {
-    setErrorModal(false);
-  }
-  
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -52,34 +50,34 @@ export default function Home() {
           Search
         </button>
       </form>
-      {!videoIds.length && (
+      {!videos.length && (
         <div className="alert alert-dark" role="alert">
-          No search results yet!, Please submit a search above!
+          No search results yet! Please submit a search above!
         </div>
       )}
-      {videoIds.length > 0 && (
+      {videos.length > 0 && (
         <div>
-          {videoIds.map((videoId) => (
-            <YouTube
-              key={videoId}
-              videoId={videoId}
-              opts={{ width: "640", height: "360" }}
-            />
-          ))}
+          {videos.map((video) =>
+            video.id ? (
+              <ul key={video.id}>
+                <Link
+                  to={`/videos/${video.id}`}
+                  className="text-decoration-none"
+                >
+                  <img src={video.thumbnail} alt={video.title} />
+                  <p
+                    style={{
+                      fontWeight: "bold",
+                      color: "black",
+                    }}
+                    dangerouslySetInnerHTML={{ __html: video.title }}
+                  />
+                </Link>
+              </ul>
+            ) : null
+          )}
         </div>
       )}
-      <Modal
-        show={errorModal}
-        onHide={handleCloseErrorModal}
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Error</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-dark text-light">
-          There was an error processing your request. Please try again later.
-        </Modal.Body>
-      </Modal>
     </div>
   );
 }
