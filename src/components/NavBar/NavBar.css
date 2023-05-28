@@ -1,0 +1,19 @@
+#homeLink {
+  font-size: xx-large;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+#aboutLink {
+  font-size: xx-large;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+#header {
+  background-color: #002f5c;
+  border-width: 2;
+  min-height: 75px;
+}

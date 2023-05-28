@@ -1,45 +1,54 @@
 import React from "react";
 import logo from "../../images/yt_logo_light.png";
+import "./About.css";
 
 function About() {
   return (
     <div id="About">
-      <h1>
-        <strong>About this project...</strong>
-      </h1>
-      <p>
-        This React application lets you search for YouTube videos using the
-        YouTube API. The search results will be displayed as a list that can be
-        played when selected. Users can then choose to add a comment that will
-        be stored and displayed locally on our App.
-      </p>
-      <img src={logo} alt="YouTube Logo" width="397" height="79" />
-      <br />
-      <br />
       <h2>
-        <strong>About the developers...</strong>
+        <strong>About this project...</strong>
       </h2>
-      <h3>
+      <div className="d-flex bd-highlight">
+        <div>
+          This React application lets you search for YouTube videos using the
+          YouTube API. The search results will be displayed as a list that can
+          be played when selected. Users can then choose to add a comment that
+          will be stored and displayed locally on our App.
+        </div>
+        <div className="p-3 flex-fill bd-highlight">
+          <img src={logo} alt="YouTube Logo" width="200" height="55" />
+        </div>
+      </div>
+      <br />
+      <br />
+      <h4>
+        <strong>About the developers...</strong>
+      </h4>
+      <h5>
         <a href="https://github.com/iHanjra" rel="noreferrer">
           Irfan Hanjra
         </a>
-      </h3>
+      </h5>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        Aspiring Full Stack Software Developer interested in generative AI and
+        the intersection of creativity and technology.
       </p>
-      <h3>
+      <br />
+      <h5>
         <a href="https://github.com/rboyce212" rel="noreferrer">
           Rich Boyce
         </a>
-      </h3>
+      </h5>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        After 16 years working for two tech start-ups, I'm now at Pursuit
+        learning to become a Full Stack Developer.
+        <a
+          href="https://www.linkedin.com/in/richard-boyce-nyc/"
+          rel="noreferrer"
+        >
+          <br />
+          LinkedIn
+        </a>
       </p>
     </div>
   );

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
 
 export default function Home( {apiUrl, apiKey} ) {
   const [searchTerm, setSearchTerm] = useState("");
   const [videos, setVideos] = useState([]);
+  const [errorModal, setErrorModal] = useState(false);
 
   function handleSearch(event) {
     setSearchTerm(event.target.value);
@@ -14,7 +16,7 @@ export default function Home( {apiUrl, apiKey} ) {
       let response = await fetch(
         `${apiUrl}search?q=${searchTerm}&part=snippet&maxResults=10&key=${apiKey}`
       );
-      if (!response.ok) {
+      if (response.status === 400) {
         throw new Error("Request failed with status code " + response.status);
       }
       const data = await response.json();
@@ -22,12 +24,12 @@ export default function Home( {apiUrl, apiKey} ) {
         id: item.id.videoId,
         title: item.snippet.title,
         thumbnail: item.snippet.thumbnails.high.url,
-        date: item.snippet.publishedAt
+        date: item.snippet.publishedAt,
       }));
-       console.log("Videos:", fetchedVideos);
-       setVideos(fetchedVideos);
+      setVideos(fetchedVideos);
     } catch (error) {
       console.log(error);
+      setErrorModal(true);
     }
   }
 
@@ -35,6 +37,10 @@ export default function Home( {apiUrl, apiKey} ) {
     event.preventDefault();
     setSearchTerm("");
     fetchResults();
+  }
+
+  function handleCloseErrorModal() {
+    setErrorModal(false);
   }
 
   return (
@@ -78,6 +84,14 @@ export default function Home( {apiUrl, apiKey} ) {
           )}
         </div>
       )}
+      <Modal show={errorModal} onHide={handleCloseErrorModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="bg-dark text-light">
+          There was an error processing your request. Please try again later.
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
