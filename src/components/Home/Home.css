@@ -1,0 +1,29 @@
+.videos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-grid {
+  display: grid;
+  /* setting the number of columns here to two. */
+  grid-template-columns: repeat(2, 1fr);
+  /* adding some space between the videos */
+  grid-gap: 20px;
+  margin-top: 25px;
+}
+
+.video-grid ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.video-grid ul img {
+  max-width: 100%;
+}
+
+#alert-margin {
+  margin-top: 10px;
+}

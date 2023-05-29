@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
+import "./Home.css";
 
-export default function Home( {apiUrl, apiKey} ) {
+export default function Home({ apiUrl, apiKey }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [videos, setVideos] = useState([]);
   const [errorModal, setErrorModal] = useState(false);
@@ -24,7 +25,7 @@ export default function Home( {apiUrl, apiKey} ) {
         id: item.id.videoId,
         title: item.snippet.title,
         thumbnail: item.snippet.thumbnails.high.url,
-        date: item.snippet.publishedAt,
+        date: item.snippet.publishedAt
       }));
       setVideos(fetchedVideos);
     } catch (error) {
@@ -44,7 +45,7 @@ export default function Home( {apiUrl, apiKey} ) {
   }
 
   return (
-    <div>
+    <div className="videos-container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -57,12 +58,12 @@ export default function Home( {apiUrl, apiKey} ) {
         </button>
       </form>
       {!videos.length && (
-        <div className="alert alert-dark" role="alert">
+        <div className="alert alert-dark" role="alert" id="alert-margin">
           No search results yet! Please submit a search above!
         </div>
       )}
       {videos.length > 0 && (
-        <div>
+        <div className="video-grid">
           {videos.map((video) =>
             video.id ? (
               <ul key={video.id}>
@@ -74,7 +75,7 @@ export default function Home( {apiUrl, apiKey} ) {
                   <p
                     style={{
                       fontWeight: "bold",
-                      color: "black",
+                      color: "black"
                     }}
                     dangerouslySetInnerHTML={{ __html: video.title }}
                   />
