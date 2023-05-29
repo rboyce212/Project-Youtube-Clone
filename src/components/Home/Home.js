@@ -53,7 +53,7 @@ export default function Home({ apiUrl, apiKey }) {
           value={searchTerm}
           onChange={handleSearch}
         />
-        <button type="submit" className="btn btn-danger">
+        <button type="submit" className="btn btn-danger" id="search-submit">
           Search
         </button>
       </form>
@@ -73,9 +73,9 @@ export default function Home({ apiUrl, apiKey }) {
                 >
                   <img src={video.thumbnail} alt={video.title} />
                   <p
+                    id="video-text"
                     style={{
-                      fontWeight: "bold",
-                      color: "black"
+                      fontWeight: "bold"
                     }}
                     dangerouslySetInnerHTML={{ __html: video.title }}
                   />
