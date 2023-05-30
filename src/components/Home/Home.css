@@ -2,15 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  min-height: 1200px;
+  padding-top: 25px;
 }
 
 .video-grid {
   display: grid;
   /* setting the number of columns here to two. */
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 500px 500px;
   /* adding some space between the videos */
-  grid-gap: 20px;
+  grid-gap: 50px;
   margin-top: 25px;
   justify-items: center;
 }
@@ -29,6 +31,20 @@
 
 #alert-margin {
   margin-top: 10px;
+  background-color: #002f5c;
+  color: #16e6f9;
+  font-weight: bold;
+}
+
+#video-text {
+  color: #002f5c;
+  flex-wrap: wrap;
+}
+
+#search-submit {
+  color: #002f5c;
+  background-color: #16e6f9;
+  font-weight: bold;
 }
 
 .btn, 

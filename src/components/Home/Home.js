@@ -69,7 +69,7 @@ export default function Home({ apiUrl, apiKey }) {
           value={maxResults}
           className="max-results"
         />
-        <button type="submit" className="btn btn-danger">
+        <button type="submit" className="btn btn-danger" id="search-submit">
           Search
         </button>
       </form>
@@ -91,6 +91,7 @@ export default function Home({ apiUrl, apiKey }) {
                 >
                   <img src={video.thumbnail} alt={video.title}/>
                   <p
+                    id="video-text"
                     style={{
                       fontWeight: "bold",
                       color: "black",
