@@ -12,6 +12,7 @@
   /* adding some space between the videos */
   grid-gap: 20px;
   margin-top: 25px;
+  justify-items: center;
 }
 
 .video-grid ul {
@@ -22,8 +23,19 @@
 
 .video-grid ul img {
   max-width: 100%;
+  width: 480px;
+  height: 360px;
 }
 
 #alert-margin {
   margin-top: 10px;
+}
+
+.btn, 
+.max-results {
+  margin-left: 5px;
+}
+
+.search-bar {
+  margin-right: 5px;
 }
