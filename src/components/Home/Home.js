@@ -7,15 +7,20 @@ export default function Home({ apiUrl, apiKey }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [videos, setVideos] = useState([]);
   const [errorModal, setErrorModal] = useState(false);
+  const [maxResults, setMaxResults] = useState(0);
 
   function handleSearch(event) {
     setSearchTerm(event.target.value);
   }
 
+  function handleMaxResults(event) {
+    setMaxResults(event.target.value)
+  }
+
   async function fetchResults() {
     try {
       let response = await fetch(
-        `${apiUrl}search?q=${searchTerm}&part=snippet&maxResults=10&key=${apiKey}`
+        `${apiUrl}search?q=${searchTerm}&part=snippet&maxResults=${maxResults}&key=${apiKey}`
       );
       if (response.status === 400) {
         throw new Error("Request failed with status code " + response.status);
@@ -52,39 +57,53 @@ export default function Home({ apiUrl, apiKey }) {
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearch}
+          className="search-bar"
+        />
+        <label htmlFor="results">Max Results</label>
+        <input
+          type="number"
+          min="1"
+          max="100"
+          step="1"
+          onChange={handleMaxResults}
+          value={maxResults}
+          className="max-results"
         />
         <button type="submit" className="btn btn-danger">
           Search
         </button>
       </form>
+
       {!videos.length && (
         <div className="alert alert-dark" role="alert" id="alert-margin">
           No search results yet! Please submit a search above!
         </div>
       )}
+
       {videos.length > 0 && (
         <div className="video-grid">
           {videos.map((video) =>
-            video.id ? (
+             (
               <ul key={video.id}>
                 <Link
                   to={`/videos/${video.id}`}
                   className="text-decoration-none"
                 >
-                  <img src={video.thumbnail} alt={video.title} />
+                  <img src={video.thumbnail} alt={video.title}/>
                   <p
                     style={{
                       fontWeight: "bold",
-                      color: "black"
+                      color: "black",
                     }}
                     dangerouslySetInnerHTML={{ __html: video.title }}
                   />
                 </Link>
               </ul>
-            ) : null
+            ) 
           )}
         </div>
       )}
+
       <Modal show={errorModal} onHide={handleCloseErrorModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>Error</Modal.Title>
