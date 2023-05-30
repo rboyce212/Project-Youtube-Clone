@@ -7,14 +7,14 @@ export default function Home({ apiUrl, apiKey }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [videos, setVideos] = useState([]);
   const [errorModal, setErrorModal] = useState(false);
-  const [maxResults, setMaxResults] = useState(0);
+  const [maxResults, setMaxResults] = useState(10);
 
   function handleSearch(event) {
     setSearchTerm(event.target.value);
   }
 
   function handleMaxResults(event) {
-    setMaxResults(event.target.value)
+    setMaxResults(event.target.value);
   }
 
   async function fetchResults() {
@@ -30,7 +30,7 @@ export default function Home({ apiUrl, apiKey }) {
         id: item.id.videoId,
         title: item.snippet.title,
         thumbnail: item.snippet.thumbnails.high.url,
-        date: item.snippet.publishedAt
+        date: item.snippet.publishedAt,
       }));
       setVideos(fetchedVideos);
     } catch (error) {
@@ -69,7 +69,7 @@ export default function Home({ apiUrl, apiKey }) {
           value={maxResults}
           className="max-results"
         />
-        <button type="submit" className="btn btn-danger">
+        <button type="submit" className="btn btn-danger" id="search-submit">
           Search
         </button>
       </form>
@@ -82,25 +82,21 @@ export default function Home({ apiUrl, apiKey }) {
 
       {videos.length > 0 && (
         <div className="video-grid">
-          {videos.map((video) =>
-             (
-              <ul key={video.id}>
-                <Link
-                  to={`/videos/${video.id}`}
-                  className="text-decoration-none"
-                >
-                  <img src={video.thumbnail} alt={video.title}/>
-                  <p
-                    style={{
-                      fontWeight: "bold",
-                      color: "black",
-                    }}
-                    dangerouslySetInnerHTML={{ __html: video.title }}
-                  />
-                </Link>
-              </ul>
-            ) 
-          )}
+          {videos.map((video) => (
+            <ul key={video.id}>
+              <Link to={`/videos/${video.id}`} className="text-decoration-none">
+                <img src={video.thumbnail} alt={video.title} />
+                <p
+                  id="video-text"
+                  style={{
+                    fontWeight: "bold",
+                    color: "black",
+                  }}
+                  dangerouslySetInnerHTML={{ __html: video.title }}
+                />
+              </Link>
+            </ul>
+          ))}
         </div>
       )}
 

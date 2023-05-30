@@ -1,22 +1,25 @@
 #homeLink {
   font-size: xx-large;
   font-weight: bold;
-  font-family: “Trebuchet MS”, “Lucida Sans Unicode”, “Lucida Grande”,
-    “Lucida Sans”, Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
+
 #aboutLink {
   font-size: xx-large;
   font-weight: bold;
-  font-family: “Trebuchet MS”, “Lucida Sans Unicode”, “Lucida Grande”,
-    “Lucida Sans”, Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
+
 #header {
-  background-color: #002F5C;
+  background-color: #002f5c;
   border-width: 2;
   min-height: 75px;
 }
+
 .mx-2 {
-  color: #16E6F9;
-  font-family: “Franklin Gothic Medium”, “Arial Narrow”, Arial, sans-serif;
+  color: #16e6f9;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: x-large;
 }
