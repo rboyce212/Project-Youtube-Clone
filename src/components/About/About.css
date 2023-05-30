@@ -2,4 +2,6 @@
   margin-top: 50px;
   margin-left: 45px;
   margin-right: 40px;
+  min-height: 1200px;
+  max-width: 1200px;
 }

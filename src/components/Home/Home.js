@@ -63,7 +63,7 @@ export default function Home({ apiUrl, apiKey }) {
         <input
           type="number"
           min="1"
-          max="100"
+          max="50"
           step="1"
           onChange={handleMaxResults}
           value={maxResults}
