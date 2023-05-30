@@ -14,7 +14,7 @@ export default function Home({ apiUrl, apiKey }) {
   }
 
   function handleMaxResults(event) {
-    setMaxResults(event.target.value)
+    setMaxResults(event.target.value);
   }
 
   async function fetchResults() {
@@ -82,26 +82,21 @@ export default function Home({ apiUrl, apiKey }) {
 
       {videos.length > 0 && (
         <div className="video-grid">
-          {videos.map((video) =>
-             (
-              <ul key={video.id}>
-                <Link
-                  to={`/videos/${video.id}`}
-                  className="text-decoration-none"
-                >
-                  <img src={video.thumbnail} alt={video.title}/>
-                  <p
-                    id="video-text"
-                    style={{
-                      fontWeight: "bold",
-                      color: "black",
-                    }}
-                    dangerouslySetInnerHTML={{ __html: video.title }}
-                  />
-                </Link>
-              </ul>
-            ) 
-          )}
+          {videos.map((video) => (
+            <ul key={video.id}>
+              <Link to={`/videos/${video.id}`} className="text-decoration-none">
+                <img src={video.thumbnail} alt={video.title} />
+                <p
+                  id="video-text"
+                  style={{
+                    fontWeight: "bold",
+                    color: "black"
+                  }}
+                  dangerouslySetInnerHTML={{ __html: video.title }}
+                />
+              </Link>
+            </ul>
+          ))}
         </div>
       )}
 
@@ -109,7 +104,7 @@ export default function Home({ apiUrl, apiKey }) {
         <Modal.Header closeButton>
           <Modal.Title>Error</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="bg-dark text-light">
+        <Modal.Body className="bg-dark text-light" id="modal">
           There was an error processing your request. Please try again later.
         </Modal.Body>
       </Modal>

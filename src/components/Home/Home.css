@@ -47,11 +47,16 @@
   font-weight: bold;
 }
 
-.btn, 
+.btn,
 .max-results {
   margin-left: 5px;
 }
 
 .search-bar {
   margin-right: 5px;
+}
+
+#modal {
+  font-weight: bolder;
+  font-size: x-large;
 }
