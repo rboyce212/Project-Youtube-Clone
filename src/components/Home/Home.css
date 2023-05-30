@@ -14,7 +14,7 @@
   /* adding some space between the videos */
   grid-gap: 50px;
   margin-top: 25px;
-  column-width: 500px;
+  justify-items: center;
 }
 
 .video-grid ul {
@@ -25,6 +25,8 @@
 
 .video-grid ul img {
   max-width: 100%;
+  width: 480px;
+  height: 360px;
 }
 
 #alert-margin {
@@ -43,4 +45,13 @@
   color: #002f5c;
   background-color: #16e6f9;
   font-weight: bold;
+}
+
+.btn, 
+.max-results {
+  margin-left: 5px;
+}
+
+.search-bar {
+  margin-right: 5px;
 }
