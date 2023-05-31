@@ -1,8 +1,15 @@
 #playVideo {
   vertical-align: top;
   margin-top: 25px;
+  min-height: 1200px;
+  width: 100%;
 }
 
 .commenter-name {
   font-size: 20px;
 }
+
+/* 
+#commentForm {
+
+} */
