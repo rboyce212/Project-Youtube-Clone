@@ -7,7 +7,7 @@ export default function Home({ apiUrl, apiKey }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [videos, setVideos] = useState([]);
   const [errorModal, setErrorModal] = useState(false);
-  const [maxResults, setMaxResults] = useState(0);
+  const [maxResults, setMaxResults] = useState(10);
 
   function handleSearch(event) {
     setSearchTerm(event.target.value);
@@ -30,7 +30,7 @@ export default function Home({ apiUrl, apiKey }) {
         id: item.id.videoId,
         title: item.snippet.title,
         thumbnail: item.snippet.thumbnails.high.url,
-        date: item.snippet.publishedAt
+        date: item.snippet.publishedAt,
       }));
       setVideos(fetchedVideos);
     } catch (error) {
@@ -63,7 +63,7 @@ export default function Home({ apiUrl, apiKey }) {
         <input
           type="number"
           min="1"
-          max="100"
+          max="50"
           step="1"
           onChange={handleMaxResults}
           value={maxResults}
@@ -90,7 +90,8 @@ export default function Home({ apiUrl, apiKey }) {
                   id="video-text"
                   style={{
                     fontWeight: "bold",
-                    color: "black"
+                    color: "black",
+
                   }}
                   dangerouslySetInnerHTML={{ __html: video.title }}
                 />
