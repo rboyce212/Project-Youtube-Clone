@@ -10,10 +10,10 @@ function About() {
       </h2>
       <div className="d-flex bd-highlight">
         <div>
-          This React application lets you search for YouTube videos using the
-          YouTube API. The search results will be displayed as a list that can
-          be played when selected. Users can then choose to add a comment that
-          will be stored and displayed locally on our App.
+          This responsive React application lets you search for YouTube videos
+          using the YouTube API. The search results, which you can manually set,
+          will be displayed as a list that can be played when a title is
+          selected.
         </div>
         <div className="p-3 flex-fill bd-highlight">
           <img src={logo} alt="YouTube Logo" width="200" height="55" />
