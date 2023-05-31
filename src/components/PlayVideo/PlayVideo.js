@@ -38,13 +38,13 @@ function PlayVideo({ apiUrl, apiKey }) {
         justifyContent: "center",
         height: "calc(100vh - 80px)",
         marginTop: "25px",
-        textAlign: "center",
+        textAlign: "center"
       }}
     >
-      <div style={{ width: "100%" }}>
+      <div>
         <YouTube videoId={id} />
         <hr></hr>
-        <form onSubmit={handleSubmit}>
+        <form id="commentForm" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">Name</label>
           </div>
