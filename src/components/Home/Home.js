@@ -91,6 +91,7 @@ export default function Home({ apiUrl, apiKey }) {
                   style={{
                     fontWeight: "bold",
                     color: "black",
+
                   }}
                   dangerouslySetInnerHTML={{ __html: video.title }}
                 />
@@ -104,7 +105,7 @@ export default function Home({ apiUrl, apiKey }) {
         <Modal.Header closeButton>
           <Modal.Title>Error</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="bg-dark text-light">
+        <Modal.Body className="bg-dark text-light" id="modal">
           There was an error processing your request. Please try again later.
         </Modal.Body>
       </Modal>
